@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>ÈVOQUE — Women's Fashion</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css"/>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --ev-bg: #1a1535;
+      --ev-purple: #7F77DD;
+      --ev-purple-deep: #3C3489;
+      --ev-purple-card: #241e4e;
+      --ev-purple-border: #3a3270;
+      --ev-white: #ffffff;
+      --ev-soft: #c9c4f0;
+    }
+
+    body {
+      font-family: Georgia, serif;
+      background: var(--ev-bg);
+      color: var(--ev-white);
+    }
+
+    /* ── NAV ── */
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.4rem 2.5rem;
+      background: var(--ev-bg);
+      border-bottom: 0.5px solid var(--ev-purple-border);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .logo {
+      font-size: 22px;
+      letter-spacing: 6px;
+      text-transform: uppercase;
+      font-weight: 400;
+      color: var(--ev-white);
+    }
+    .logo span { color: var(--ev-purple); }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+    .nav-links a {
+      font-size: 11px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      text-decoration: none;
+      color: var(--ev-soft);
+      font-family: Arial, sans-serif;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--ev-white); }
+
+    .nav-icons {
+      display: flex;
+      gap: 1.2rem;
+      align-items: center;
+    }
+    .nav-icons i {
+      font-size: 20px;
+      color: var(--ev-soft);
+      cursor: pointer;
+    }
+    .cart-wrap { position: relative; }
+    .badge {
+      position: absolute;
+      top: -6px; right: -7px;
+      background: var(--ev-purple);
+      color: white;
+      font-size: 9px;
+      width: 16px; height: 16px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: Arial, sans-serif;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      background: var(--ev-bg);
+      padding: 7rem 2.5rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      flex-direction: column;
+      border-bottom: 0.5px solid var(--ev-purple-border);
+    }
+    .hero-title {
+      font-size: 56px;
+      font-weight: 700;
+      line-height: 1.15;
+      color: var(--ev-white);
+      margin-bottom: 2.4rem;
+    }
+    .hero-title em {
+      color: var(--ev-purple);
+      font-style: italic;
+    }
+    .hero-btns { display: flex; gap: 1rem; justify-content: center; }
+
+    .btn-fill {
+      padding: 13px 32px;
+      background: var(--ev-purple);
+      color: white;
+      font-size: 11px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      border: none;
+      cursor: pointer;
+      border-radius: 2px;
+      font-family: Arial, sans-serif;
+      transition: background 0.2s;
+    }
+    .btn-fill:hover { background: var(--ev-purple-deep); }
+
+    .btn-ghost {
+      padding: 13px 32px;
+      background: transparent;
+      color: var(--ev-white);
+      font-size: 11px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      border: 0.5px solid var(--ev-purple-border);
+      cursor: pointer;
+      border-radius: 2px;
+      font-family: Arial, sans-serif;
+      transition: border-color 0.2s;
+    }
+    .btn-ghost:hover { border-color: var(--ev-purple); }
+
+    /* ── SECTIONS ── */
+    .section { padding: 3.5rem 2.5rem; }
+    .sec-label {
+      font-size: 10px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--ev-purple);
+      margin-bottom: 0.4rem;
+      font-family: Arial, sans-serif;
+    }
+    .sec-title {
+      font-size: 26px;
+      font-weight: 400;
+      color: var(--ev-white);
+      margin-bottom: 2rem;
+    }
+
+    /* ── CATEGORIES ── */
+    .categories {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1rem;
+    }
+    .cat-tile {
+      border: 0.5px solid var(--ev-purple-border);
+      border-radius: 4px;
+      padding: 2rem 1rem;
+      text-align: center;
+      background: var(--ev-purple-card);
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .cat-tile:hover { background: var(--ev-purple-deep); }
+    .cat-tile i {
+      font-size: 30px;
+      color: var(--ev-purple);
+      display: block;
+      margin-bottom: 0.8rem;
+    }
+    .cat-tile-name {
+      font-size: 12px;
+      color: var(--ev-white);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      font-family: Arial, sans-serif;
+    }
+    .cat-tile-count {
+      font-size: 11px;
+      color: var(--ev-soft);
+      margin-top: 4px;
+      font-family: Arial, sans-serif;
+    }
+
+    /* ── PRODUCTS ── */
+    .products {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.2rem;
+    }
+    .prod-card { cursor: pointer; }
+    .prod-img {
+      height: 260px;
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 64px;
+      margin-bottom: 0.8rem;
+      position: relative;
+      background: var(--ev-purple-card);
+      border: 0.5px solid var(--ev-purple-border);
+      overflow: hidden;
+    }
+    .prod-img img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      position: absolute; top: 0; left: 0;
+    }
+    .prod-tag {
+      position: absolute;
+      top: 10px; left: 10px;
+      background: var(--ev-purple);
+      color: white;
+      font-size: 9px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      padding: 3px 8px;
+      border-radius: 2px;
+      font-family: Arial, sans-serif;
+      z-index: 1;
+    }
+    .prod-name {
+      font-size: 13px;
+      color: var(--ev-white);
+      margin-bottom: 3px;
+      font-family: Arial, sans-serif;
+      font-weight: 500;
+    }
+    .prod-price {
+      font-size: 13px;
+      color: var(--ev-purple);
+      font-family: Arial, sans-serif;
+    }
+    .prod-add {
+      margin-top: 8px;
+      width: 100%;
+      padding: 10px;
+      background: transparent;
+      border: 0.5px solid var(--ev-purple-border);
+      font-size: 10px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--ev-soft);
+      cursor: pointer;
+      border-radius: 2px;
+      font-family: Arial, sans-serif;
+      transition: background 0.2s, color 0.2s;
+    }
+    .prod-add:hover {
+      background: var(--ev-purple);
+      color: white;
+      border-color: var(--ev-purple);
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      padding: 2.5rem 2.5rem 1.5rem;
+      border-top: 0.5px solid var(--ev-purple-border);
+      display: grid;
+      grid-template-columns: 1.5fr 1fr 1fr;
+      gap: 2rem;
+      background: var(--ev-bg);
+    }
+    .footer-logo {
+      font-size: 18px;
+      letter-spacing: 5px;
+      text-transform: uppercase;
+      color: var(--ev-white);
+      margin-bottom: 0.5rem;
+    }
+    .footer-desc {
+      font-size: 12px;
+      color: var(--ev-soft);
+      line-height: 1.7;
+      font-family: Arial, sans-serif;
+    }
+    .footer-heading {
+      font-size: 10px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--ev-white);
+      margin-bottom: 0.8rem;
+      font-family: Arial, sans-serif;
+      font-weight: 600;
+    }
+    .footer-links { list-style: none; display: flex; flex-direction: column; gap: 0.4rem; }
+    .footer-links a {
+      font-size: 12px;
+      color: var(--ev-soft);
+      text-decoration: none;
+      font-family: Arial, sans-serif;
+      transition: color 0.2s;
+    }
+    .footer-links a:hover { color: var(--ev-white); }
+
+    .footer-bottom {
+      padding: 1rem 2.5rem;
+      border-top: 0.5px solid var(--ev-purple-border);
+      display: flex;
+      justify-content: space-between;
+      background: var(--ev-bg);
+    }
+    .footer-bottom p {
+      font-size: 11px;
+      color: var(--ev-purple);
+      font-family: Arial, sans-serif;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .hero-title { font-size: 36px; }
+      .categories { grid-template-columns: repeat(2, 1fr); }
+      .products { grid-template-columns: repeat(2, 1fr); }
+      footer { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <div class="logo">È<span>V</span>OQUE</div>
+    <ul class="nav-links">
+      <li><a href="#category">Dresses</a></li>
+      <li><a href="#category">Two Pieces</a></li>
+      <li><a href="#category">Tops</a></li>
+      <li><a href="#category">Pants</a></li>
+    </ul>
+    <div class="nav-icons">
+      <i class="ti ti-search"></i>
+      <div class="cart-wrap">
+        <i class="ti ti-shopping-bag"></i>
+        <span class="badge" id="cart-count">0</span>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <div class="hero">
+    <h1 class="hero-title">Choose What<br><em>ÈVOQUE's You</em></h1>
+    <div class="hero-btns">
+      <button class="btn-fill" onclick="document.getElementById('featured').scrollIntoView({behavior:'smooth'})">Shop Now</button>
+      <button class="btn-ghost" onclick="document.getElementById('category').scrollIntoView({behavior:'smooth'})">Browse Categories</button>
+    </div>
+  </div>
+
+  <!-- CATEGORIES -->
+  <section class="section" id="category">
+    <p class="sec-label">Browse</p>
+    <h2 class="sec-title">Shop by Category</h2>
+    <div class="categories">
+      <div class="cat-tile">
+        <i class="ti ti-dress"></i>
+        <div class="cat-tile-name">Dresses</div>
+        <div class="cat-tile-count">38 styles</div>
+      </div>
+      <div class="cat-tile">
+        <i class="ti ti-layout-rows"></i>
+        <div class="cat-tile-name">Two Pieces</div>
+        <div class="cat-tile-count">22 styles</div>
+      </div>
+      <div class="cat-tile">
+        <i class="ti ti-shirt"></i>
+        <div class="cat-tile-name">Tops</div>
+        <div class="cat-tile-count">45 styles</div>
+      </div>
+      <div class="cat-tile">
+        <i class="ti ti-box"></i>
+        <div class="cat-tile-name">Pants</div>
+        <div class="cat-tile-count">30 styles</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURED PRODUCTS -->
+  <section class="section" id="featured" style="padding-top: 0;">
+    <p class="sec-label">Handpicked</p>
+    <h2 class="sec-title">Featured Pieces</h2>
+    <div class="products" id="products-grid"></div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div>
+      <div class="footer-logo">ÈVOQUE</div>
+      <p class="footer-desc">Women's fashion curated with intention. From everyday elegance to statement looks — all for her.</p>
+    </div>
+    <div>
+      <p class="footer-heading">Shop</p>
+      <ul class="footer-links">
+        <li><a href="#">Dresses</a></li>
+        <li><a href="#">Two Pieces</a></li>
+        <li><a href="#">Tops</a></li>
+        <li><a href="#">Pants</a></li>
+      </ul>
+    </div>
+    <div>
+      <p class="footer-heading">Help</p>
+      <ul class="footer-links">
+        <li><a href="#">Sizing Guide</a></li>
+        <li><a href="#">Contact Us</a></li>
+      </ul>
+    </div>
+  </footer>
+  <div class="footer-bottom">
+    <p>©️ 2026 ÈVOQUE. All rights reserved.</p>
+    <p>Privacy · Terms</p>
+  </div>
+
+  <script>
+    const products = [
+      { name: "Satin Wrap Dress", price: "$89", emoji: "👗", tag: "New In" },
+      { name: "Linen Co-ord Set", price: "$112", emoji: "🩱", tag: "Bestseller" },
+      { name: "Ruched Bodysuit Top", price: "$48", emoji: "👚", tag: "" },
+      { name: "Wide Leg Trousers", price: "$76", emoji: "👖", tag: "New In" },
+    ];
+
+    let cart = 0;
+
+    document.getElementById('products-grid').innerHTML = products.map((p, i) => `
+      <div class="prod-card">
+        <div class="prod-img">
+          ${p.tag ? `<span class="prod-tag">${p.tag}</span>` : ''}
+          ${p.emoji}
+        </div>
+        <div class="prod-name">${p.name}</div>
+        <div class="prod-price">${p.price}</div>
+        <button class="prod-add" onclick="addToCart()">Add to Cart</button>
+      </div>
+    `).join('');
+
+    function addToCart() {
+      cart++;
+      document.getElementById('cart-count').textContent = cart;
+    }
+  </script>
+
+</body>
+</html>
